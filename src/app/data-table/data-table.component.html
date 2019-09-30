@@ -1,0 +1,33 @@
+<!-- Search -->
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<!-- End -->
+<!-- Table -->
+<div style="overflow: auto;">
+    <div class="mat-elevation-z8">
+        <mat-table [dataSource]="tableData" matSort  (matSortChange)="customSort($event)" >
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+
+        <ng-container matColumnDef="ID" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Title" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.title}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Photo" >
+            <mat-header-cell *matHeaderCellDef>Photo</mat-header-cell>
+            <mat-cell *matCellDef="let element"><img [src]="element.thumbnailUrl" /></mat-cell>
+        </ng-container>
+        </mat-table>
+        <!--End  -->
+        <!-- Paginator -->
+        <mat-paginator [length]=dataCount
+[pageSize]=pageSize></mat-paginator>
+<!-- End -->
+
+    </div>
+</div>
